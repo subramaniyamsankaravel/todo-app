@@ -53,7 +53,7 @@ pipeline{
         }
 
         
-        /*stage('Docker build'){
+        stage('Docker build'){
             steps{
                
                     sh 'docker image prune -a --force'
@@ -66,17 +66,17 @@ pipeline{
             steps{
                 
 
-                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPWD')]) {
+                 {
                             // some block
-                   sh "docker login -u sujjad -p ${dockerHubPWD}"
+                   sh "docker login -u subramaniyam -p Jp9.kumaran"
 
                 }
                 sh "docker commit cisample_app_1 sujjad/todo-app:v${env.BUILD_ID}"
-                sh "docker push sujjad/todo-app:v${env.BUILD_ID}"
+                sh "docker push subramaniyam/todo-app:v${env.BUILD_ID}"
 
             }
         }
-        stage('deploying it to kubernetes'){
+        /*stage('deploying it to kubernetes'){
             steps{
                 sh 'chmod +x change-tag.sh'
                 sh """./change-tag.sh v${env.BUILD_ID}"""
