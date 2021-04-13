@@ -27,7 +27,7 @@ pipeline{
                  "files": [
                              {
                                 "pattern": "app/target/*.war",
-                                "target": "art-doc-dev-loc/todo-app/"
+                                "target": "art-doc-dev-loc"
                             }
                         ]
             }''',
