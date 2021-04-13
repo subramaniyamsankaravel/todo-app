@@ -5,12 +5,7 @@ pipeline{
        jdk 'JDK11'
    }
     stages{
-        stage('Fetch project from github'){
-            steps{
-                git branch: 'master', url: 'https://github.com/sujjadshaik/todo-app.git'
-            }
-                
-        }
+        
         stage('Maven package'){
             steps{
                 sh 'mvn -f app/pom.xml package'
@@ -19,7 +14,7 @@ pipeline{
         }
         stage('sonar analysis'){
             steps{
-                withSonarQubeEnv('sonarQube'){
+                withSonarQubeEnv('sonar'){
                     sh 'mvn -f app/pom.xml sonar:sonar'
                 }
             }
@@ -43,7 +38,7 @@ pipeline{
         stage('download artifact'){
             steps{
                  rtDownload (
-                 serverId: "ARTIFACTORY-SERVER",
+                 serverId: "ARTIFACTORY_SERVER",
                 spec:"""{
                      "files": [
                                 {
@@ -58,7 +53,7 @@ pipeline{
         }
 
         
-        stage('Docker build'){
+        /*stage('Docker build'){
             steps{
                
                     sh 'docker image prune -a --force'
@@ -101,7 +96,7 @@ pipeline{
                 }
 
             }
-        }
+        }*/
     
 
     }
