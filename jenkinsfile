@@ -56,8 +56,8 @@ pipeline{
         stage('Docker build'){
             steps{
                
-                    sh 'docker image prune -a --force'
-                    sh 'docker-compose build'
+                    bat 'docker image prune -a --force'
+                    bat 'docker-compose build'
                 
                 
             }
@@ -68,11 +68,11 @@ pipeline{
 
                  {
                             // some block
-                   sh "docker login -u subramaniyam -p Jp9.kumaran"
+                   bat "docker login -u subramaniyam -p Jp9.kumaran"
 
                 }
-                sh "docker commit cisample_app_1 sujjad/todo-app:v${env.BUILD_ID}"
-                sh "docker push subramaniyam/todo-app:v${env.BUILD_ID}"
+                
+                bat "docker push subramaniyam/todo-app:v${env.BUILD_ID}"
 
             }
         }
