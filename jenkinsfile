@@ -73,11 +73,11 @@ pipeline{
         }
         stage('creating kubernetes cluster'){
             steps{
-                   dir("C:/Users/Welcome/Desktop/New folder/learn-terraform-provision-aks-cluster")
+                   dir("C:/Users/Welcome/Desktop/New folder/learn-terraform-provision-aks-cluster"){
                    //bat "cd C:\Users\Welcome\Desktop\New folder\learn-terraform-provision-aks-cluster"
                    bat "terraform init"
                 bat "terraform plan"
-
+               }
             }
         }
         stage('deploying it to kubernetes'){
