@@ -64,8 +64,9 @@ pipeline{
         }
         stage('Pushing images to docker hub'){
             steps{
-                
-                   bat "docker login -u subramaniyam -p Jp9.kumaran"
+                   withCredentials([string(credentialsId: 'dockerpass', variable: 'dockerPWD')]) {
+                   bat "docker login -u subramaniyam -p $(dockerPWD)"
+                   }
                    bat "docker tag practice_app:latest subramaniyam/todo-app:v${env.BUILD_ID}"
                 bat "docker push subramaniyam/todo-app:v${env.BUILD_ID}"
 
@@ -82,22 +83,22 @@ pipeline{
         }*/
         stage('deploying it to kubernetes'){
             steps{
-                //bat 'chmod +x change-tag.sh'
-                //bat """./change-tag.sh v${env.BUILD_ID}"""
-                //bat 'cat k8s/api-deployment.yaml'
-               // withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'https://content-jackal-k8s-656e8d92.hcp.westus2.azmk8s.io:443') {
+                //sh 'chmod +x change-tag.sh'
+                //sh """./change-tag.sh v${env.BUILD_ID}"""
+                //sh 'cat k8s/api-deployment.yaml'
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'https://brave-rodent-k8s-9a144257.hcp.westus2.azmk8s.io:443') {
                                 // some block
-                    bat 'kubectl apply -f k8s/database-deployment.yaml'
+                    sh 'kubectl apply -f k8s/database-deployment.yaml'
                     
-                //}
+                }
                 sleep(120)
-                //withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'https://content-jackal-k8s-656e8d92.hcp.westus2.azmk8s.io:443') {
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'https://brave-rodent-k8s-9a144257.hcp.westus2.azmk8s.io:443') {
                                 // some block
                     bat 'kubectl apply -f k8s/api-deployment.yaml'
                     bat 'kubectl get pods'
                     bat 'kubectl get svc'
                     
-               // }
+                }
 
             }
         }
