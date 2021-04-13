@@ -65,7 +65,7 @@ pipeline{
         stage('Pushing images to docker hub'){
             steps{
                 
-                   bat "docker login -u subramaniyam -p Jp9.kumaran"
+                   bat "docker login -u subramaniyam -p --password-stdin"
                    bat "docker tag practice_app:latest subramaniyam/todo-app:v${env.BUILD_ID}"
                 bat "docker push subramaniyam/todo-app:v${env.BUILD_ID}"
 
