@@ -19,7 +19,7 @@ spec:
         env:
           - name: MYSQL_DB_HOST
             value: mysql:3306
-        image: sujjad/todo-app:tagVersion
+        image: subramaniyam/todo-app:latest
         resources:
             requests:
               cpu: 100m
