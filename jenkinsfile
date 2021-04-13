@@ -88,7 +88,7 @@ pipeline{
                 //sh 'cat k8s/api-deployment.yaml'
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'https://brave-rodent-k8s-9a144257.hcp.westus2.azmk8s.io:443') {
                                 // some block
-                    sh 'kubectl apply -f k8s/database-deployment.yaml'
+                    bat 'kubectl apply -f k8s/database-deployment.yaml'
                     
                 }
                 sleep(120)
