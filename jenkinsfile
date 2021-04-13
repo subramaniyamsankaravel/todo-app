@@ -65,7 +65,7 @@ pipeline{
         stage('Pushing images to docker hub'){
             steps{
                    withCredentials([string(credentialsId: 'dockerpass', variable: 'dockerPWD')]) {
-                   bat "docker login -u subramaniyam -p $(dockerPWD)"
+                   bat "docker login -u subramaniyam -p ${dockerPWD}"
                    }
                    bat "docker tag practice_app:latest subramaniyam/todo-app:latest"
                 bat "docker push subramaniyam/todo-app:latest"
