@@ -8,14 +8,14 @@ pipeline{
         
         stage('Maven package'){
             steps{
-                sh 'mvn -f app/pom.xml package'
+                bat 'mvn -f app/pom.xml package'
 
             }
         }
         stage('sonar analysis'){
             steps{
                 withSonarQubeEnv('sonar'){
-                    sh 'mvn -f app/pom.xml sonar:sonar'
+                    bat 'mvn -f app/pom.xml sonar:sonar'
                 }
             }
         }
