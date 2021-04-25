@@ -92,7 +92,7 @@ pipeline{
                     
                 //}
                 //sleep(120)
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'eminent-dogfish-k8s-e6d90ab6.hcp.westus2.azmk8s.io') {
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'https://eminent-dogfish-k8s-e6d90ab6.hcp.westus2.azmk8s.io:443') {
                                 // some block
                     //bat 'kubectl apply -f k8s/api-deployment.yaml'
                     bat 'kubectl get pods'
