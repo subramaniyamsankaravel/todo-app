@@ -86,11 +86,11 @@ pipeline{
                 //sh 'chmod +x change-tag.sh'
                 //sh """./change-tag.sh v${env.BUILD_ID}"""
                 //sh 'cat k8s/api-deployment.yaml'
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'eminent-dogfish-k8s-e6d90ab6.hcp.westus2.azmk8s.io') {
+               // withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'eminent-dogfish-k8s-e6d90ab6.hcp.westus2.azmk8s.io') {
                                 // some block
-                    bat 'kubectl apply -f k8s/database-deployment.yaml'
+                 //   bat 'kubectl apply -f k8s/database-deployment.yaml'
                     
-                }
+                //}
                 //sleep(120)
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-azure', namespace: '', serverUrl: 'https://eminent-dogfish-k8s-e6d90ab6.hcp.westus2.azmk8s.io:443') {
                                 // some block
